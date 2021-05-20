@@ -37,12 +37,54 @@ public class CalculadoraTest {
     
     //o método cadastraProduto retorna true se o produto foi cadastrado com sucesso
     @Test
-    void testeBoolean() {
+    void testeTrue() {
     	String produtoCerto = "Abacaxi"; //funciona
-    	String produtoErrado = "Pera";   //não funciona
-        Assertions.assertTrue(loja.cadastraProduto("Abacaxi"));
+    	//String produtoErrado = "Pera";   //não funciona
+        Assertions.assertTrue(loja.cadastraProduto(produtoCerto));
     }
     
     
-
+    //o método addFuncionario cadastra funcionários apenas com idade maior ou igual a 18
+    @Test
+    void testeFalse() {
+    	String funcionario = "Pedro";
+    	Assertions.assertFalse(loja.addFuncionario(funcionario, 16));
+    }
+    
+    
+    //verifica que os valores retornados não são iguais
+    @Test
+    void testeNotEquals() {
+        Assertions.assertNotEquals(Calculadora.invSqrt(4), Calculadora.fastInvSqrt(4));
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
