@@ -2,9 +2,6 @@ import erros.DivisaoPorZeroException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 public class CalculadoraTest {
 
     private final Calculadora calculadora = new Calculadora();
@@ -12,12 +9,12 @@ public class CalculadoraTest {
 
     @Test
     void testeSomar() {
-        assertEquals(2, calculadora.soma(1, 1));
+    	Assertions.assertEquals(2, calculadora.soma(1, 1));
     }
 
     @Test
     void testeDivisaoPorZero() {
-        Exception exception = assertThrows(DivisaoPorZeroException.class, () -> calculadora.divisao(7.0, 0.0));
+        Exception exception = Assertions.assertThrows(DivisaoPorZeroException.class, () -> calculadora.divisao(7.0, 0.0));
 
         Assertions.assertEquals(exception.getMessage(), "Não é possível dividir um númnero por zero.");
     }
@@ -26,7 +23,7 @@ public class CalculadoraTest {
     //é menor que o delta fornecido
     @Test
     void testeRaizInversa() {
-        assertEquals(Calculadora.invSqrt(4), Calculadora.fastInvSqrt(4), 0.5);
+        Assertions.assertEquals(Calculadora.invSqrt(4), Calculadora.fastInvSqrt(4), 0.5);
     }
 
     //teste de nulidade de um objeto
@@ -35,12 +32,12 @@ public class CalculadoraTest {
     void testeNull() {
         String str;
         str = "Ao atribuir um valor, deixa de ser nulo";
-        assertNotNull(str);
+        Assertions.assertNotNull(str);
     }
 
     @Test
     void testeBoolean() {
-        assertTrue(loja.cadastraProduto("Abacaxi"));
+        Assertions.assertTrue(loja.cadastraProduto("Abacaxi"));
     }
 
 }
