@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CalculadoraTest {
 
     private final Calculadora calculadora = new Calculadora();
+    private final Loja loja = new Loja("Loja de produtos que começam apenas com A");
 
     @Test
     void testeSomar() {
@@ -26,6 +27,20 @@ public class CalculadoraTest {
     @Test
     void testeRaizInversa() {
         assertEquals(Calculadora.invSqrt(4), Calculadora.fastInvSqrt(4), 0.5);
+    }
+
+    //teste de nulidade de um objeto
+    //usado para testar se um objeto foi inicializado corretamente
+    @Test
+    void testeNull() {
+        String str;
+        str = "Ao atribuir um valor, deixa de ser nulo";
+        assertNotNull(str);
+    }
+
+    @Test
+    void testeBoolean() {
+        assertTrue(loja.cadastraProduto("Abacaxi"));
     }
 
 }
