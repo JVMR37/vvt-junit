@@ -21,4 +21,11 @@ public class CalculadoraTest {
         Assertions.assertEquals(exception.getMessage(), "Não é possível dividir um númnero por zero.");
     }
 
+    //exemplo de assertEquals com delta, que testa se a diferença entre os valores
+    //é menor que o delta fornecido
+    @Test
+    void testeRaizInversa() {
+        assertEquals(Calculadora.invSqrt(4), Calculadora.fastInvSqrt(4), 0.5);
+    }
+
 }
