@@ -34,10 +34,15 @@ public class CalculadoraTest {
         str = "Ao atribuir um valor, deixa de ser nulo";
         Assertions.assertNotNull(str);
     }
-
+    
+    //o método cadastraProduto retorna true se o produto foi cadastrado com sucesso
     @Test
     void testeBoolean() {
+    	String produtoCerto = "Abacaxi"; //funciona
+    	String produtoErrado = "Pera";   //não funciona
         Assertions.assertTrue(loja.cadastraProduto("Abacaxi"));
     }
+    
+    
 
 }
