@@ -1,29 +1,42 @@
 public class Loja {
-	public static int funcCont = 0;
+	public int funcCont = 0;
+	public int prodCont = 0;
     public String nome;
     public String[] funcionarios;
-
+    public String[] produtos;
+    
     public Loja(String nome) {
         this.nome = nome;
+        this.funcionarios = new String[10];
+        this.produtos = new String[10];
+        this.funcCont = 0;
+        this.prodCont = 0;
+    }
+
+    public Loja(String nome, int qtdProdutos, int qtdFuncionarios) {
+        this.nome = nome;
+        this.funcionarios = new String[qtdFuncionarios];
+        this.produtos = new String[qtdProdutos];
+        this.funcCont = 0;
+        this.prodCont = 0;
     }
 
     public boolean cadastraProduto(String nomeProduto) {
-        if (nomeProduto.startsWith("A")) {
-            return true;
+        if (this.prodCont == produtos.length) {
+        	return false;
         }
-
         else {
-            return false;
+        	this.produtos[prodCont] = nomeProduto;
+        	return true;
         }
     }
     
     public boolean addFuncionario(String funcionario, int idade) {
     	if (idade >= 18) {
-    		funcionarios[funcCont] = funcionario;
-    		funcCont++;
+    		this.funcionarios[funcCont] = funcionario;
+    		this.funcCont++;
     		return true;
     	}
-    	
     	else {
     		return false;
     	}

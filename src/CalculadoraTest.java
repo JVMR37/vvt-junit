@@ -3,18 +3,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CalculadoraTest {
+    private final Loja loja = new Loja("Loja de produtos que começam apenas com A", 2, 3);
 
-    private final Calculadora calculadora = new Calculadora();
-    private final Loja loja = new Loja("Loja de produtos que começam apenas com A");
-
+    //para int
     @Test
     void testeSomar() {
-    	Assertions.assertEquals(2, calculadora.soma(1, 1));
+    	Assertions.assertEquals(2, Calculadora.soma(1, 1));
+    }
+    
+    //para double
+    @Test
+    void testeMultiplicar() {
+    	Assertions.assertEquals(4, Calculadora.multiplica(2, 2));
     }
 
     @Test
     void testeDivisaoPorZero() {
-        Exception exception = Assertions.assertThrows(DivisaoPorZeroException.class, () -> calculadora.divisao(7.0, 0.0));
+        Exception exception = Assertions.assertThrows(DivisaoPorZeroException.class, () -> Calculadora.divisao(7.0, 0.0));
 
         Assertions.assertEquals(exception.getMessage(), "Não é possível dividir um númnero por zero.");
     }
@@ -38,9 +43,8 @@ public class CalculadoraTest {
     //o método cadastraProduto retorna true se o produto foi cadastrado com sucesso
     @Test
     void testeTrue() {
-    	String produtoCerto = "Abacaxi"; //funciona
-    	//String produtoErrado = "Pera";   //não funciona
-        Assertions.assertTrue(loja.cadastraProduto(produtoCerto));
+    	String produto = "Abacaxi"; //funciona
+        Assertions.assertTrue(loja.cadastraProduto(produto));
     }
     
     
@@ -58,6 +62,19 @@ public class CalculadoraTest {
         Assertions.assertNotEquals(Calculadora.invSqrt(4), Calculadora.fastInvSqrt(4));
     }
     
+    @Test
+    void assertSame() {
+    	Loja loja = new Loja("Loja 1");
+    	Loja mesmaLoja = loja;
+    	Assertions.assertSame(loja, mesmaLoja);
+    }
+    
+    @Test
+    void assertNotSame() {
+    	Loja loja = new Loja("Loja 1");
+    	Loja loja2 = new Loja("Loja 2");
+    	Assertions.assertSame(loja, loja2);
+    }
     
     
     
