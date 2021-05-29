@@ -1,5 +1,5 @@
+import erros.ProdutoDuplicadoException;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
 
 import java.time.Duration;
 
@@ -31,9 +31,9 @@ public class LojaTest {
     //o método cadastraProduto retorna true se o produto foi cadastrado com sucesso
     @Test
     void testeInsercaoDeProduto() {
-        String produtoCerto = "Abacaxi"; //funciona
+        String produtoCerto = "Uva"; //funciona
         //String produtoErrado = "Pera";   //não funciona
-        Assertions.assertTrue(loja.cadastraProduto(produtoCerto));
+        Assertions.assertTrue(loja.cadastrarProduto(produtoCerto));
     }
 
 
@@ -81,14 +81,14 @@ public class LojaTest {
 
     @Test
     @DisplayName("TESTE DE ADIÇÃO DE PRODUTOS")
-    void testeAdicaoDeProdutos() {
+    void testaAdicaoDeProdutos() {
         // Dentro de um bloco de código, se uma declaração falhar,
         // o código subsequente no mesmo bloco será ignorado.
         Assertions.assertAll("Adição de produtos",
                 () -> {
-                    loja.cadastraProduto("Abacaxi");
-                    loja.cadastraProduto("Abacate");
-                    loja.cadastraProduto("Amaciante");
+                    loja.cadastrarProduto("Abacaxi");
+                    loja.cadastrarProduto("Abacate");
+                    loja.cadastrarProduto("Amaciante");
 
                     // Em uma asserção agrupada, todas as asserções são executadas
                     // e todas as falhas serão relatadas juntas.
@@ -102,15 +102,26 @@ public class LojaTest {
                 }
         );
 
+        loja.listarProdutos();
+    }
+
+    @RepeatedTest(2)
+    public void cadastrarProdutosComNomesIguais() {
+
+        Assertions.assertThrows(ProdutoDuplicadoException.class, () ->
+                loja.cadastrarProduto("Banana")
+        );
+
+        loja.listarProdutos();
     }
 
 
     @AfterEach
-    void tearDown() {
+    void executarDepoisDeCadaTeste() {
     }
 
     @AfterAll
-    static void tearDownAll() {
+    static void executarAposTodosOsTestes() {
 
         System.out.println("=========================================");
 
