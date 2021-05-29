@@ -1,4 +1,4 @@
-import erros.ProdutoDuplicadoException;
+import exceptions.ProdutoDuplicadoException;
 import org.junit.jupiter.api.*;
 
 import java.time.Duration;

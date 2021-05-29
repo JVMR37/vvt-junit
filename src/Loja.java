@@ -1,4 +1,4 @@
-import erros.ProdutoDuplicadoException;
+import exceptions.ProdutoDuplicadoException;
 
 import java.util.ArrayList;
 import java.util.List;

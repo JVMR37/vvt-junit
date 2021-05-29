@@ -1,4 +1,4 @@
-import erros.DivisaoPorZeroException;
+import exceptions.DivisaoPorZeroException;
 import org.junit.jupiter.api.*;
 
 public class CalculadoraTest {

@@ -1,4 +1,4 @@
-package erros;
+package exceptions;
 
 public class ProdutoDuplicadoException extends RuntimeException {
 
