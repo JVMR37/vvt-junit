@@ -6,5 +6,4 @@ public class DivisaoPorZeroException extends RuntimeException {
         super(message);
     }
 
-
 }
