@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VVV-JUnit.iml" filepath="$PROJECT_DIR$/VVV-JUnit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VVT-JUnit.iml" filepath="$PROJECT_DIR$/VVT-JUnit.iml" />
     </modules>
   </component>
 </project>
