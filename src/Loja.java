@@ -1,5 +1,8 @@
+import erros.ProdutoDuplicadoException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Loja {
     public static int funcCont = 0;
@@ -13,13 +16,35 @@ public class Loja {
         iniciarConexaoComBanco();
     }
 
-    public boolean cadastraProduto(String nomeProduto) {
-        if (Character.isUpperCase(nomeProduto.charAt(0))) {
-            produtos.add(nomeProduto);
-            return true;
-        } else {
+    public boolean cadastrarProduto(String nomeProduto) {
+        if (Character.isLowerCase(nomeProduto.charAt(0))) {
             return false;
+        } else if (produtos.contains(nomeProduto)) {
+            throw new ProdutoDuplicadoException("Um produto com esse nome"
+                    + " já foi cadastrado!");
+        } else {
+            produtos.add(nomeProduto);
+            System.out.printf("Produto %s foi cadastrado com sucesso !\n", nomeProduto);
+            return true;
         }
+    }
+
+    public void listarProdutos() {
+        ListIterator<String> listIterator = produtos.listIterator();
+        int coutProduto = 0;
+
+        System.out.println("\n.:Listagem de produtos:.");
+        System.out.println("-------------------------------");
+
+        while (listIterator.hasNext()) {
+
+            String produto = listIterator.next();
+            System.out.println(++coutProduto + " - " + produto);
+
+        }
+
+        System.out.println("-------------------------------\n");
+
     }
 
     public boolean addFuncionario(String funcionario, int idade) {
@@ -48,13 +73,11 @@ public class Loja {
         return produtos.contains(nomeProduto);
     }
 
-    private void  iniciarConexaoComBanco(){
-        System.out.println("CONEXÃO COM O BANCO EFETUADA COM SUCESSO !");
+    private void iniciarConexaoComBanco() {
+        System.out.println("CONEXÃO COM O BANCO FOI ESTABELECIDA COM SUCESSO !");
     }
 
     public void fecharConexaoComBD() {
         System.out.println("CONEXÃO COM O BANCO ENCERRADA COM SUCESSO !");
     }
-
-
 }
