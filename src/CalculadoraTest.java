@@ -6,7 +6,7 @@ public class CalculadoraTest {
     private static Calculadora calculadora;
 
     @BeforeAll
-    static void initAll() {
+    static void inicializacao() {
         calculadora = new Calculadora();
         System.out.println("Passou por aqui antes do teste");
     }
