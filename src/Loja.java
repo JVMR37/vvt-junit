@@ -12,14 +12,14 @@ public class Loja {
 
     public Loja(String nome) {
         this.nome = nome;
-        produtos = new ArrayList<String>();
+        produtos = new ArrayList<>();
         iniciarConexaoComBanco();
     }
 
     public boolean cadastrarProduto(String nomeProduto) {
         if (Character.isLowerCase(nomeProduto.charAt(0))) {
             return false;
-        } else if (produtos.contains(nomeProduto)) {
+        } else if (verificaProduto(nomeProduto)) {
             throw new ProdutoDuplicadoException("Um produto com esse nome"
                     + " já foi cadastrado!");
         } else {
