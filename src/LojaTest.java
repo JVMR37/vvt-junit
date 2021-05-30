@@ -1,7 +1,11 @@
 import exceptions.ProdutoDuplicadoException;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.function.Executable;
 
 import java.time.Duration;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Testes da Classe Loja")
 public class LojaTest {
@@ -33,7 +37,7 @@ public class LojaTest {
     void testeInsercaoDeProduto() {
         String produtoCerto = "Uva"; //funciona
         //String produtoErrado = "Pera";   //não funciona
-        Assertions.assertTrue(loja.cadastrarProduto(produtoCerto));
+        assertTrue(loja.cadastrarProduto(produtoCerto));
     }
 
 
@@ -93,17 +97,71 @@ public class LojaTest {
                     // Em uma asserção agrupada, todas as asserções são executadas
                     // e todas as falhas serão relatadas juntas.
                     Assertions.assertAll("Verficação de cadastro dos produtos",
-                            () -> Assertions.assertTrue(loja.verificaProduto("Abacaxi")),
-                            () -> Assertions.assertTrue(loja.verificaProduto("Abacate")),
-                            () -> Assertions.assertTrue(loja.verificaProduto("Amaciante"))
+                            () -> assertTrue(loja.verificaProduto("Abacaxi")),
+                            () -> assertTrue(loja.verificaProduto("Abacate")),
+                            () -> assertTrue(loja.verificaProduto("Amaciante"))
                     );
 
-                    Assertions.assertFalse(loja.produtos.contains("Banana"));
+                    Assertions.assertFalse(loja.verificaProduto("Banana"));
                 }
         );
 
         loja.listarProdutos();
     }
+
+    @TestFactory
+    public Collection<DynamicTest> testaAdicaoDeProdutosComTestFactory() {
+        List<String> produtosParaAdicionar = new ArrayList<>(Arrays.asList("Abacaxi", "Abacate", "Amaciante"));
+
+        Collection<DynamicTest> dynamicTestList = new ArrayList<>();
+
+        for (String nomeProduto : produtosParaAdicionar) {
+            Executable executable;
+            String nomeDoCasoTeste;
+            DynamicTest dynamicTest;
+
+            executable = () -> Assertions.assertTrue(() -> {
+                boolean produtoAdicionadoComSucesso;
+                try {
+                    produtoAdicionadoComSucesso = loja.cadastrarProduto(nomeProduto);
+                } catch (ProdutoDuplicadoException exception) {
+                    produtoAdicionadoComSucesso = false;
+                }
+                return produtoAdicionadoComSucesso;
+            });
+
+            nomeDoCasoTeste = "Testando cadastro do produto: " + nomeProduto + " .";
+
+            dynamicTest = DynamicTest.dynamicTest(nomeDoCasoTeste, executable);
+
+            dynamicTestList.add(dynamicTest);
+        }
+
+        return dynamicTestList;
+    }
+//
+//    @TestFactory
+//    public Iterator<DynamicTest> testaAdicaoDeProdutosComTestFactoryComIterator() {
+//        List<String> produtosParaAdicionar = new ArrayList<String>(Arrays.asList("Abacaxi", "Abacate", "Amaciante"));
+//
+//        return produtosParaAdicionar.stream().map(nomeProduto ->
+//                DynamicTest.dynamicTest(
+//                        "Testando cadastro do produto: " + nomeProduto + " .",
+//                        () -> {
+//                            assertTrue(() -> {
+//                                boolean produtoAdicionadoComSucesso;
+//                                try {
+//                                    produtoAdicionadoComSucesso = loja.cadastrarProduto(nomeProduto);
+//                                } catch (ProdutoDuplicadoException exception) {
+//                                    produtoAdicionadoComSucesso = false;
+//                                }
+//                                return produtoAdicionadoComSucesso;
+//                            });
+//                        }
+//                )
+//        ).iterator();
+//    }
+
 
     @RepeatedTest(2)
     public void cadastrarProdutosComNomesIguais() {
@@ -129,6 +187,4 @@ public class LojaTest {
 
         System.out.println("=========================================");
     }
-
-
 }
