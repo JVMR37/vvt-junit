@@ -20,8 +20,6 @@ public class CalculadoraTest {
     @Test
     void testeSomar() {
 
-        System.out.println("Iniciou o teste");
-
         Assertions.assertEquals(2, calculadora.soma(1, 1));
     }
 
