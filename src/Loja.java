@@ -19,7 +19,7 @@ public class Loja {
     public boolean cadastrarProduto(String nomeProduto) {
         if (Character.isLowerCase(nomeProduto.charAt(0))) {
             return false;
-        } else if (verificaProduto(nomeProduto)) {
+        } else if (verificarProduto(nomeProduto)) {
             throw new ProdutoDuplicadoException("Um produto com esse nome"
                     + " já foi cadastrado!");
         } else {
@@ -69,7 +69,7 @@ public class Loja {
         return "Retorno da comunicação com a API";
     }
 
-    public boolean verificaProduto(String nomeProduto) {
+    public boolean verificarProduto(String nomeProduto) {
         return produtos.contains(nomeProduto);
     }
 

@@ -97,12 +97,12 @@ public class LojaTest {
                     // Em uma asserção agrupada, todas as asserções são executadas
                     // e todas as falhas serão relatadas juntas.
                     Assertions.assertAll("Verficação de cadastro dos produtos",
-                            () -> assertTrue(loja.verificaProduto("Abacaxi")),
-                            () -> assertTrue(loja.verificaProduto("Abacate")),
-                            () -> assertTrue(loja.verificaProduto("Amaciante"))
+                            () -> assertTrue(loja.verificarProduto("Abacaxi")),
+                            () -> assertTrue(loja.verificarProduto("Abacate")),
+                            () -> assertTrue(loja.verificarProduto("Amaciante"))
                     );
 
-                    Assertions.assertFalse(loja.verificaProduto("Banana"));
+                    Assertions.assertFalse(loja.verificarProduto("Banana"));
                 }
         );
 
