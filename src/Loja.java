@@ -47,7 +47,7 @@ public class Loja {
 
     }
 
-    public boolean addFuncionario(String funcionario, int idade) {
+    public boolean cadastrarFuncionario(String funcionario, int idade) {
         if (idade >= 18) {
             funcionarios[funcCont] = funcionario;
             funcCont++;

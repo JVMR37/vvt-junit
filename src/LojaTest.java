@@ -36,7 +36,7 @@ public class LojaTest {
     @Test
     void testeInsercaoDeProduto() {
         String produtoCerto = "Uva"; //funciona
-        //String produtoErrado = "Pera";   //não funciona
+        //String produtoErrado = "pera";   //não funciona
         assertTrue(loja.cadastrarProduto(produtoCerto));
     }
 
@@ -45,7 +45,7 @@ public class LojaTest {
     @Test
     void testeAdicionaFuncionario() {
         String funcionario = "Pedro";
-        Assertions.assertFalse(loja.addFuncionario(funcionario, 16));
+        Assertions.assertFalse(loja.cadastrarFuncionario(funcionario, 16));
     }
 
     // O método teste se a chamada retornará com 10ms
