@@ -19,7 +19,6 @@ public class CalculadoraTest {
 
     @Test
     void testeSomar() {
-
         Assertions.assertEquals(2, calculadora.soma(1, 1));
     }
 
